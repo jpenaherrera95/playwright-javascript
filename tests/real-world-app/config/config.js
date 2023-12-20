@@ -1,17 +1,10 @@
 const environments = {
-    development: 'http://localhost:3000',
-    staging: 'https://staging.example.com',
-    production: 'https://www.example.com',
-  };
-  
-  module.exports = {
-    getBaseUrl: (env) => {
-      const baseUrl = environments[env];
-  
-      if (!baseUrl) {
-        throw new Error(`Unknown environment: ${env}`);
-      }
-  
-      return baseUrl;
-    },
-  };
+  development: {
+    baseUrl: 'http://localhost:3000',
+  },
+  staging: 'https://staging.example.com',
+  production: 'https://www.example.com',
+};
+
+const selectedEnvironment = process.env.NODE_ENV || 'development';
+module.exports = { ...environments[selectedEnvironment]};
