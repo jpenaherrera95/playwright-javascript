@@ -7,11 +7,10 @@ exports.BasePage = class BasePage {
    */
   constructor(page) {
     this.page = page;
+    this.url = '/';
   }
 
   async goto() {
-    const environment = process.env.NODE_ENV || 'development';
-    const baseUrl = config.getBaseUrl(environment);
-    await this.page.goto(baseUrl);
+    await this.page.goto(config.baseUrl + this.url);
   }
 };
